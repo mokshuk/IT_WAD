@@ -1,0 +1,237 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+}
+
+.nav-links a:hover {
+    background-color: #34495e;
+    border-radius: 4px;
+}
+
+/* Welcome Section */
+.welcome {
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.welcome h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+/* About Section */
+.about {
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+}
+
+.about h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Achievements Section */
+.achievements {
+    padding: 60px 20px;
+    background-color: white;
+}
+
+.achievements h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.achievement-card {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.achievement-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* Rankings Section */
+.rankings {
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+}
+
+.rankings h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.rank-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.rank-card {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.rank-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.rank-card p {
+    margin: 5px 0;
+}
+
+/* Statistics Section */
+.statistics {
+    padding: 60px 20px;
+    background-color: #2c3e50;
+    color: white;
+}
+
+.statistics h2 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: #34495e;
+    padding: 30px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.stat-card h3 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+/* Contact Section */
+.contact {
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+}
+
+.contact h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.contact-card {
+    background-color: white;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.contact-card h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.contact-card p {
+    margin: 8px 0;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Simple Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .welcome h1 {
+        font-size: 32px;
+    }
+}
