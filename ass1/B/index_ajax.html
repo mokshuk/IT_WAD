@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration - jQuery AJAX</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+        .registration-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #f5576c;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-top: 10px;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+        }
+        .form-control:focus {
+            border-color: #f5576c;
+            box-shadow: 0 0 0 0.2rem rgba(245, 87, 108, 0.25);
+        }
+        .btn-submit {
+            margin-top: 20px;
+            padding: 12px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="registration-form">
+            <h1>USER REGISTRATION</h1>
+            <form id="registrationForm" method="POST">
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" name="fullName" id="fullName" 
+                           placeholder="Enter your full name" 
+                           pattern="[A-Za-z ]+" 
+                           class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="userEmail" class="form-label">Email Address</label>
+                    <input type="email" name="userEmail" id="userEmail" 
+                           placeholder="example@email.com"
+                           class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="userName" class="form-label">Username</label>
+                    <input type="text" name="userName" id="userName" 
+                           placeholder="Choose a username"
+                           class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="userPassword" class="form-label">Password</label>
+                    <input type="password" name="userPassword" id="userPassword" 
+                           placeholder="Create a strong password"
+                           minlength="6"
+                           class="form-control" required>
+                </div>
+                
+                <button type="button" onclick="submitForm()" 
+                        class="btn btn-primary btn-submit w-100">
+                    SUBMIT REGISTRATION
+                </button>
+                
+                <div class="loading">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p>Processing your registration...</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Get form values using jQuery
+            var name = $('input[name=fullName]').val();
+            var email = $('input[name=userEmail]').val();
+            var username = $('input[name=userName]').val();
+            var password = $('input[name=userPassword]').val();
+
+            // Validate form
+            if (!name || !email || !username || !password) {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            // Store in localStorage
+            var userData = {
+                name: name,
+                email: email,
+                username: username,
+                password: password,
+                timestamp: new Date().toISOString()
+            };
+
+            // Get existing users or initialize empty array
+            var users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+            users.push(userData);
+            localStorage.setItem('registeredUsers', JSON.stringify(users));
+
+            // Prepare data for AJAX
+            var formData = 'name=' + encodeURIComponent(name) + 
+                          '&email=' + encodeURIComponent(email) + 
+                          '&username=' + encodeURIComponent(username) +
+                          '&password=' + encodeURIComponent(password);
+
+            // Show loading indicator
+            $('.loading').show();
+            $('.btn-submit').prop('disabled', true);
+
+            // jQuery AJAX request
+            $.ajax({
+                type: "POST",
+                url: "output_ajax.php",
+                data: formData,
+                success: function(response) {
+                    // Hide loading indicator
+                    $('.loading').hide();
+                    $('.btn-submit').prop('disabled', false);
+                    
+                    // Open response in new window
+                    var newWindow = window.open('', '_blank');
+                    newWindow.document.write(response);
+                    newWindow.document.close();
+                    
+                    // Reset form
+                    $('#registrationForm')[0].reset();
+                },
+                error: function(xhr, status, error) {
+                    // Hide loading indicator
+                    $('.loading').hide();
+                    $('.btn-submit').prop('disabled', false);
+                    
+                    alert('Error: ' + error + '\nPlease check your server configuration.');
+                }
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

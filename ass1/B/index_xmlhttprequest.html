@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration - XmlHttpRequest</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+        .registration-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-top: 10px;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        .btn-submit {
+            margin-top: 20px;
+            padding: 12px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="registration-form">
+            <h1>USER REGISTRATION</h1>
+            <form id="registrationForm" method="POST">
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" name="fullName" id="fullName" 
+                           placeholder="Enter your full name" 
+                           pattern="[A-Za-z ]+" 
+                           class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="userEmail" class="form-label">Email Address</label>
+                    <input type="email" name="userEmail" id="userEmail" 
+                           placeholder="example@email.com"
+                           class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="userName" class="form-label">Username</label>
+                    <input type="text" name="userName" id="userName" 
+                           placeholder="Choose a username"
+                           class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="userPassword" class="form-label">Password</label>
+                    <input type="password" name="userPassword" id="userPassword" 
+                           placeholder="Create a strong password"
+                           minlength="6"
+                           class="form-control" required>
+                </div>
+                
+                <button type="button" onclick="submitForm()" 
+                        class="btn btn-primary btn-submit w-100">
+                    SUBMIT REGISTRATION
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Get form values
+            var name = document.getElementById('fullName').value;
+            var email = document.getElementById('userEmail').value;
+            var username = document.getElementById('userName').value;
+            var password = document.getElementById('userPassword').value;
+
+            // Validate form
+            if (!name || !email || !username || !password) {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            // Store in localStorage
+            var userData = {
+                name: name,
+                email: email,
+                username: username,
+                password: password,
+                timestamp: new Date().toISOString()
+            };
+
+            // Get existing users or initialize empty array
+            var users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+            users.push(userData);
+            localStorage.setItem('registeredUsers', JSON.stringify(users));
+
+            // Prepare data for AJAX
+            var data = 'name=' + encodeURIComponent(name) + 
+                      '&email=' + encodeURIComponent(email) + 
+                      '&username=' + encodeURIComponent(username) +
+                      '&password=' + encodeURIComponent(password);
+
+            // Create XMLHttpRequest
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'output_xmlhttp.php', true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Open response in new window
+                    var newWindow = window.open('', '_blank');
+                    newWindow.document.write(xhr.responseText);
+                    newWindow.document.close();
+                    
+                    // Reset form
+                    document.getElementById('registrationForm').reset();
+                } else {
+                    alert('Error: ' + xhr.status);
+                }
+            };
+
+            xhr.onerror = function() {
+                alert('Request failed. Please check your server configuration.');
+            };
+
+            xhr.send(data);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

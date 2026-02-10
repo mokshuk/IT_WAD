@@ -1,0 +1,16 @@
+<div class="profile-card">
+    <h1>User Profile</h1>
+    
+    <div *ngIf="currentUser; else noUser">
+        <p><strong>Username:</strong> {{ currentUser.user }}</p>
+        <p><strong>Email:</strong> {{ currentUser.email }}</p>
+        <p><strong>Account Status:</strong> Active</p>
+        
+        <button routerLink="/login" style="margin-top: 20px; background-color: #dc3545;">Logout</button>
+    </div>
+
+    <ng-template #noUser>
+        <p>No profile data found.</p>
+        <p>Please <a routerLink="/register">Register</a> or <a routerLink="/login">Login</a> first.</p>
+    </ng-template>
+</div>

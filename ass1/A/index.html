@@ -10,7 +10,10 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">PICT</div>
+            <div class="logo">
+                <img src="pict_logo.png" alt="PICT Logo" class="logo-img">
+                <span>PICT</span>
+            </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -24,16 +27,29 @@
 
     <!-- Welcome Section -->
     <section class="welcome" id="home">
-        <h1>Welcome to PICT</h1>
-        <p>Pune Institute of Computer Technology</p>
-        <p>Excellence in Engineering Education</p>
+        <div class="welcome-overlay">
+            <img src="campus_hero.jpg" alt="PICT Campus" class="hero-image">
+            <div class="welcome-content">
+                <h1>Welcome to PICT</h1>
+                <p>Pune Institute of Computer Technology</p>
+                <p>Excellence in Engineering Education</p>
+            </div>
+        </div>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <h2>About PICT</h2>
-            <p>Pune Institute of Computer Technology (PICT) is a leading engineering college established in 1983. We are committed to providing quality education in engineering and technology fields, fostering innovation and research excellence.</p>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About PICT</h2>
+                    <p>Pune Institute of Computer Technology (PICT) is a leading engineering college established in 1983. We are committed to providing quality education in engineering and technology fields, fostering innovation and research excellence.</p>
+                    <p>Our state-of-the-art infrastructure, experienced faculty, and industry collaborations ensure that students receive comprehensive education that prepares them for successful careers in technology and engineering.</p>
+                </div>
+                <div class="about-image">
+                    <img src="college_building.jpg" alt="PICT Building">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -43,15 +59,15 @@
             <h2>Our Achievements</h2>
             <div class="achievement-grid">
                 <div class="achievement-card">
-                    <h3>🏆 NIRF Ranking</h3>
+                    <h3> NIRF Ranking</h3>
                     <p>Ranked among top engineering colleges in India by NIRF 2024</p>
                 </div>
                 <div class="achievement-card">
-                    <h3>🎓 Placement Record</h3>
+                    <h3> Placement Record</h3>
                     <p>95% placement rate with top companies recruiting our students</p>
                 </div>
                 <div class="achievement-card">
-                    <h3>🔬 Research Excellence</h3>
+                    <h3> Research Excellence</h3>
                     <p>Over 200 research papers published in international journals</p>
                 </div>
             </div>
@@ -61,57 +77,37 @@
     <!-- Rankings Section -->
     <section class="rankings" id="rankings">
         <div class="container">
-            <h2>Top 10 BE Students - Current Rankings</h2>
+            <h2>Top 5 BE Students - Current Rankings</h2>
             <div class="rank-grid">
-                <div class="rank-card">
-                    <h3>🥇 Rank 1 - Priya Sharma</h3>
-                    <p>CGPA: 9.85</p>
-                    <p>Branch: Computer Engineering</p>
+                <div class="rank-card gold-medal">
+                    <div class="rank-number">1</div>
+                    <h3> Priya Sharma</h3>
+                    <p><strong>CGPA:</strong> 9.85</p>
+                    <p><strong>Branch:</strong> Computer Engineering</p>
+                </div>
+                <div class="rank-card silver-medal">
+                    <div class="rank-number">2</div>
+                    <h3> Rahul Patil</h3>
+                    <p><strong>CGPA:</strong> 9.78</p>
+                    <p><strong>Branch:</strong> IT Engineering</p>
+                </div>
+                <div class="rank-card bronze-medal">
+                    <div class="rank-number">3</div>
+                    <h3> Ananya Desai</h3>
+                    <p><strong>CGPA:</strong> 9.72</p>
+                    <p><strong>Branch:</strong> E&TC Engineering</p>
                 </div>
                 <div class="rank-card">
-                    <h3>🥈 Rank 2 - Rahul Patil</h3>
-                    <p>CGPA: 9.78</p>
-                    <p>Branch: IT Engineering</p>
+                    <div class="rank-number">4</div>
+                    <h3>Aditya Kumar</h3>
+                    <p><strong>CGPA:</strong> 9.65</p>
+                    <p><strong>Branch:</strong> Computer Engineering</p>
                 </div>
                 <div class="rank-card">
-                    <h3>🥉 Rank 3 - Ananya Desai</h3>
-                    <p>CGPA: 9.72</p>
-                    <p>Branch: E&TC Engineering</p>
-                </div>
-                <div class="rank-card">
-                    <h3>Rank 4 - Aditya Kumar</h3>
-                    <p>CGPA: 9.65</p>
-                    <p>Branch: Computer Engineering</p>
-                </div>
-                <div class="rank-card">
-                    <h3>Rank 5 - Sneha Joshi</h3>
-                    <p>CGPA: 9.58</p>
-                    <p>Branch: IT Engineering</p>
-                </div>
-                <div class="rank-card">
-                    <h3>Rank 6 - Rohan Mehta</h3>
-                    <p>CGPA: 9.52</p>
-                    <p>Branch: Computer Engineering</p>
-                </div>
-                <div class="rank-card">
-                    <h3>Rank 7 - Kavya Naik</h3>
-                    <p>CGPA: 9.45</p>
-                    <p>Branch: E&TC Engineering</p>
-                </div>
-                <div class="rank-card">
-                    <h3>Rank 8 - Arjun Rao</h3>
-                    <p>CGPA: 9.41</p>
-                    <p>Branch: IT Engineering</p>
-                </div>
-                <div class="rank-card">
-                    <h3>Rank 9 - Ishita Kulkarni</h3>
-                    <p>CGPA: 9.38</p>
-                    <p>Branch: Computer Engineering</p>
-                </div>
-                <div class="rank-card">
-                    <h3>Rank 10 - Vivek Singh</h3>
-                    <p>CGPA: 9.35</p>
-                    <p>Branch: E&TC Engineering</p>
+                    <div class="rank-number">5</div>
+                    <h3>Sneha Joshi</h3>
+                    <p><strong>CGPA:</strong> 9.58</p>
+                    <p><strong>Branch:</strong> IT Engineering</p>
                 </div>
             </div>
         </div>
